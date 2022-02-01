@@ -89,3 +89,8 @@ inputs:
       description: |
         Marker to represent lib who's major version update is avaiable
       is_required: true
+
+
+outputs:
+
+  - PODS_USED_STATUS: Detail list of libraries and version stats
