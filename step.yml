@@ -95,5 +95,7 @@ outputs:
 
   - PODS_USED_STATUS: Detail list of libraries and version stats
     opts:
+      title: Detail list of libraries and version stats
+      summary: Detail list of libraries and version stats
         description: |
           Detail list of libraries and version stats
