@@ -17,11 +17,13 @@ You need to pass these param, all are required:
 
 #### Sample Output
 ---
-Pods Status:
-:ghost: = Unused library used
-:rocket: = New version available
-:fire: = New main version available (Recomend Update)
-   The following pod updates are available:
+Pods Status:  
+
+:ghost: = Unused library used  
+:rocket: = New version available  
+:fire: = New main version available (Recomend Update)  
+
+The following pod updates are available:  
 - DateToolsSwift 4.0.0 -> 4.0.0 (latest version 5.0.0) :fire:
 - ECKit-Utils 1.2.2 -> 1.2.2 (latest version 3.1.0) :fire:
 - ECNetworking 0.8.1 -> 0.8.1 (latest version 2.0.1) :fire:
