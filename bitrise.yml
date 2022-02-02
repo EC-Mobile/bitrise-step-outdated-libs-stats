@@ -6,7 +6,7 @@ app:
   - GIT_ACCESS_TOKEN: $GIT_ACCESS_TOKEN
   - BITRISE_STEP_ID: outdated-libs-stats
   - BITRISE_STEP_VERSION: "0.0.1"
-  - BITRISE_STEP_GIT_CLONE_URL: https://github.com/KageRiyuu/bitrise-step-outdated-libs-stats
+  - BITRISE_STEP_GIT_CLONE_URL: https://github.com/EC-Mobile/bitrise-step-outdated-libs-stats
   - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
 
 workflows:
@@ -68,7 +68,7 @@ workflows:
       - BITRISE_STEP_GIT_CLONE_URL: $BITRISE_STEP_GIT_CLONE_URL
     description: |-
       Usage sample:
-      - git::https://github.com/KageRiyuu/bitrise-step-outdated-libs-stats.git@main:
+      - git::https://github.com/EC-Mobile/bitrise-step-outdated-libs-stats.git@main:
         title: Outdated Libs Stats
         inputs:
         - UNUSED_MARKER: ":ghost:"

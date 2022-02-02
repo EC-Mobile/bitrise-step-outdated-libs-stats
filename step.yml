@@ -14,9 +14,9 @@ summary: |
 description: |
   This step uses will generate report of outdated libs.
   It suppords Coca Pods.
-website: https://github.com/KageRiyuu/bitrise-step-outdated-libs-stats
-source_code_url: https://github.com/KageRiyuu/bitrise-step-outdated-libs-stats
-support_url: https://github.com/KageRiyuu/bitrise-step-outdated-libs-stats
+website: https://github.com/EC-Mobile/bitrise-step-outdated-libs-stats
+source_code_url: https://github.com/EC-Mobile/bitrise-step-outdated-libs-stats
+support_url: https://github.com/EC-Mobile/bitrise-step-outdated-libs-stats
 host_os_tags:
   - osx-10.10
   - ubuntu-16.04
