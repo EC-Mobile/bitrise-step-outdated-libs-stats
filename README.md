@@ -14,7 +14,9 @@ You need to pass these param, all are required:
 
 ### Outputs
 - USED_LIBS_STATUS
-```
+
+#### Sample Output
+---
 Pods Status:
 :ghost: = Unused library used
 :rocket: = New version available
@@ -48,7 +50,7 @@ Pods Status:
 - SwiftLint 0.41.0 -> 0.46.2 (latest version 0.46.2) :rocket:
 - Swinject 2.8.0 -> 2.8.0 (latest version 2.8.1) :rocket:
 - XMLMapper 1.6.1 -> 2.0.0 (latest version 2.0.0) :fire:
-```
+---
 
 ## How to use this Step
 
