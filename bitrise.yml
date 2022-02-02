@@ -1,0 +1,87 @@
+format_version: 4
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+  envs:
+  - GIT_ACCESS_TOKEN: $GIT_ACCESS_TOKEN
+  - BITRISE_STEP_ID: outdated-libs-stats
+  - BITRISE_STEP_VERSION: "0.0.1"
+  - BITRISE_STEP_GIT_CLONE_URL: https://github.com/EC-Mobile/bitrise-step-outdated-libs-stats
+  - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
+
+workflows:
+  test:
+    steps:
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            echo "Just an example 'secrets' print."
+            echo "The value of 'A_SECRET_PARAM' is: $A_SECRET_PARAM"
+    - change-workdir:
+        title: Switch working dir to test / _tmp dir
+        description: |-
+          To prevent step testing issues, like referencing relative
+          files with just './some-file' in the step's code, which would
+          work for testing the step from this directory directly
+          but would break if the step is included in another `bitrise.yml`.
+        run_if: true
+        inputs:
+        - path: ./_tmp
+        - is_create_path: true
+    - path::./:
+        title: Step Test
+        description: |-
+          The example input has a default value,
+          you can overwrite it if you want to, just like we did below,
+          but the step would use the default value specified in the `step.yml`
+          file if you would not specify another value.
+        run_if: true
+        inputs:
+        - UNUSED_MARKER: ":ghost:"
+        - UPDATE_AVAILABLE_MARKER: ":rocket:"
+        - MAIN_VERSION_AVAILABLE_MARKER: ":fire:"
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            echo "This step is finished..."
+
+
+  # ----------------------------------------------------------------
+  # --- workflows to Share this step into a Step Library
+  audit-this-step:
+    steps:
+    - script:
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -ex
+            stepman audit --step-yml ./step.yml
+
+  share-this-step:
+    envs:
+      # if you want to share this step into a StepLib
+      - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
+      - BITRISE_STEP_ID: $BITRISE_STEP_ID
+      - BITRISE_STEP_VERSION: $BITRISE_STEP_VERSION
+      - BITRISE_STEP_GIT_CLONE_URL: $BITRISE_STEP_GIT_CLONE_URL
+    description: |-
+      Usage sample:
+      - git::https://github.com/EC-Mobile/bitrise-step-outdated-libs-stats.git@main:
+        title: Outdated Libs Stats
+        inputs:
+        - UNUSED_MARKER: ":ghost:"
+        - UPDATE_AVAILABLE_MARKER: ":rocket:"
+        - MAIN_VERSION_AVAILABLE_MARKER: ":fire:"
+    before_run:
+    - audit-this-step
+    steps:
+    - script:
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -ex
+            bitrise share start -c "${MY_STEPLIB_REPO_FORK_GIT_URL}"
+            bitrise share create --stepid "${BITRISE_STEP_ID}" --tag "${BITRISE_STEP_VERSION}" --git "${BITRISE_STEP_GIT_CLONE_URL}"
+            bitrise share finish
